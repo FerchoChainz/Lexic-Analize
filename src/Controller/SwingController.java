@@ -44,11 +44,11 @@ public class SwingController {
             }
         });
 
-        setButtonsEnabled(false);  // Inicialmente deshabilitar los botones
+        setButtonsEnabled(false);  
     }
 
     public void setButtonsEnabled(boolean enabled) {
-        // Aquí puedes referenciar los botones si los tienes como variables de instancia
+
     }
 
     public void loadFile(JFrame frame) {
@@ -59,7 +59,7 @@ public class SwingController {
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
             try {
-                codeTextArea.setText("");  // Limpiar el área de texto antes de cargar nuevo contenido
+                codeTextArea.setText("");  
                 Files.lines(selectedFile.toPath(), Charset.forName("UTF-8")).forEach(line -> codeTextArea.append(line + "\n"));
             } catch (IOException e) {
                 e.printStackTrace();
@@ -76,7 +76,7 @@ public class SwingController {
     public void analyze() {
         String[] lines = codeTextArea.getText().split("\n");
         Map<Integer, String> code = new HashMap<>();
-        boolean lock = true;  // To ignore multiple lines comments
+        boolean lock = true;  
 
         for (int i = 0; i < lines.length; i++) {
             String line = lines[i]; 
