@@ -17,6 +17,7 @@ public class Lexical_Analyzer {
         keywordsAndOperatorsMap.put("switch", Token.KEYWORD);
         keywordsAndOperatorsMap.put("case", Token.KEYWORD);
         keywordsAndOperatorsMap.put("default", Token.KEYWORD);
+        keywordsAndOperatorsMap.put("break", Token.KEYWORD);
         keywordsAndOperatorsMap.put("null", Token.KEYWORD);
         keywordsAndOperatorsMap.put("+", Token.PLUS);
         keywordsAndOperatorsMap.put("-", Token.MINUS);
@@ -32,6 +33,7 @@ public class Lexical_Analyzer {
         keywordsAndOperatorsMap.put(")", Token.RIGHT_PARENTHESIS);
         keywordsAndOperatorsMap.put(">=", Token.GREATER_OR_EQUALS);
         keywordsAndOperatorsMap.put("<=", Token.LOWER_OR_EQUALS);
+        keywordsAndOperatorsMap.put("&&", Token.AND);
         keywordsAndOperatorsMap.put(">", Token.GREATER_THAN);
         keywordsAndOperatorsMap.put("<", Token.LOWER_THAN);
         keywordsAndOperatorsMap.put("<>", Token.NOT_EQUALS);
@@ -39,6 +41,8 @@ public class Lexical_Analyzer {
         keywordsAndOperatorsMap.put("@", Token.AT_SIGN);
         keywordsAndOperatorsMap.put("{", Token.LEFT_BRACE);
         keywordsAndOperatorsMap.put("}", Token.RIGHT_BRACE);
+        keywordsAndOperatorsMap.put("--", Token.DECREMENTAL);
+        keywordsAndOperatorsMap.put("++", Token.INCREMENTAL);
     }
 
     public List<Lexeme> analyzeCode(Map<Integer,String> lines) {

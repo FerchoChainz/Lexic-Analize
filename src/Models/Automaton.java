@@ -18,23 +18,25 @@ public class Automaton {
     private State executeTransition(State currentState, char entry) {
         switch (currentState) {
             case INITIAL: {
-                if ((entry >= 'A' && entry <= 'Z') || (entry >= 'a' && entry <= 'z'))
+                if ((entry >= 'A' && entry <= 'Z') || (entry >= 'a' && entry <= 'z')) {
                     return State.Q1;
-                else if (entry == '"')
+                } else if (entry == '"') {
                     return State.Q2;
-                else if (entry >= '0' && entry <= '9')
+                } else if (entry >= '0' && entry <= '9') {
                     return State.Q4;
-                else if (entry == '+' || entry == '-')
+                } else if (entry == '+' || entry == '-') {
                     return State.Q5;
-                else
+                } else {
                     return State.INVALIDATION_STATE;
+                }
             }
 
             case Q1: {
                 return (entry >= 'A' && entry <= 'Z')
                         || (entry >= 'a' && entry <= 'z')
                         || (entry >= '0' && entry <= '9')
-                        ? State.Q1 : State.INVALIDATION_STATE;
+                        || (entry == '_')
+                                ? State.Q1 : State.INVALIDATION_STATE;
             }
 
             case Q2: {
@@ -42,12 +44,13 @@ public class Automaton {
             }
 
             case Q4: {
-                if (entry == '.')
+                if (entry == '.') {
                     return State.Q6;
-                else if (entry >= '0' && entry <= '9')
+                } else if (entry >= '0' && entry <= '9') {
                     return State.Q4;
-                else
+                } else {
                     return State.INVALIDATION_STATE;
+                }
             }
 
             case Q5: {
@@ -64,9 +67,9 @@ public class Automaton {
         }
     }
 
-    public Token evaluate(String str){
+    public Token evaluate(String str) {
         State state = State.INITIAL;
-        for(char c : str.toCharArray()){
+        for (char c : str.toCharArray()) {
             state = executeTransition(state, c);
         }
         return finalStates.getOrDefault(state, Token.INVALID);
